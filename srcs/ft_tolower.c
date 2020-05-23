@@ -5,20 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:49 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:50 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/06 15:55:05 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/03 15:33:06 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
 int	ft_tolower(int c)
 {
-	unsigned	char	l;
-
-	l = (unsigned char)c;
-	if (l >= 'A' && l <= 'Z')
-		return (l + 32);
-	else
-		return (l);
+	if (c >= 'A' && c <= 'Z')
+		(c = c + 32);
+	return (c);
 }

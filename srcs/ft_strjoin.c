@@ -5,46 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:03 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:03 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/20 16:33:18 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 14:24:51 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	size_t	ft_len(const char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
+	unsigned	int	lens1;
+	unsigned	int	lens2;
+	int				i;
+	char			*join;
 
-	i = 0;
-	while (str && str[i])
-		++i;
-	return (i);
-}
-
-char	*ft_strjoin(const char *s1, const char *s2)
-{
-	char	*new;
-	size_t	i;
-	size_t	j;
-	size_t	size;
-
-	i = 0;
-	j = 0;
-	size = ft_len(s2) + ft_len(s1);
-	if (!(new = malloc(size + 1)))
+	lens1 = 0;
+	lens2 = 0;
+	i = -1;
+	if (!s1 || !s2)
 		return (NULL);
-	while (s1 && s1[j])
-	{
-		new[j] = s1[j];
-		++j;
-	}
-	while (s2 && s2[i])
-	{
-		new[j] = s2[i];
-		++i;
-		++j;
-	}
-	new[j] = '\0';
-	return (new);
+	while (*(s1 + lens1))
+		lens1++;
+	while (*(s2 + lens2))
+		lens2++;
+	if (!(join = (char*)malloc((lens1 + lens2) + 1)))
+		return (NULL);
+	while (*(s1 + ++i))
+		*(join + i) = *(s1 + i);
+	i = -1;
+	while (*(s2 + ++i))
+		*(join + lens1 + i) = *(s2 + i);
+	*(join + lens1 + i) = '\0';
+	return (join);
 }

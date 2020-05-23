@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:14 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:14 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/14 14:44:20 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/04 13:52:02 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	size_t			i;
-	unsigned	char	*buff_dst;
+	size_t				i;
+	unsigned	char	*buffdst;
+	unsigned	char	*buffsrc;
 
 	i = 0;
-	buff_dst = (unsigned char *)dst;
-	if (dst == src || src == NULL)
-		return (dst);
+	buffdst = (unsigned char*)dst;
+	buffsrc = (unsigned char*)src;
 	while (i < n)
 	{
-		buff_dst[i] = ((const unsigned char *)src)[i];
-		if (((const unsigned char *)src)[i] == (unsigned char)c)
-			return (buff_dst + i + 1);
-		++i;
+		*(buffdst + i) = *(buffsrc + i);
+		if (*(buffdst + i) == (unsigned char)c)
+			return (dst + i + 1);
+		i++;
 	}
 	return (NULL);
 }

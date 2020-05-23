@@ -5,29 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:21 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:21 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/19 17:26:25 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/04 15:11:29 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t				i;
-	const	unsigned	char	*buff_s1;
-	const	unsigned	char	*buff_s2;
+	size_t						i;
+	const	unsigned	char	*str1;
+	const	unsigned	char	*str2;
 
 	i = 0;
-	buff_s1 = (const unsigned char *)s1;
-	buff_s2 = (const unsigned char *)s2;
-	if (n == 0 || s1 == s2)
-		return (0);
+	str1 = (const unsigned char*)s1;
+	str2 = (const unsigned char*)s2;
 	while (i < n)
 	{
-		if (buff_s1[i] != buff_s2[i])
-			return ((int)(buff_s1[i] - buff_s2[i]));
-		++i;
+		if (*(str1 + i) != *(str2 + i))
+			return (*(str1 + i) - *(str2 + i));
+		i++;
 	}
 	return (0);
 }

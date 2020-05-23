@@ -5,24 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:25 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:25 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/14 13:37:02 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 12:44:29 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
+
+/*
+** Copie les n premiers octets de src dans dst.
+**
+** Renvoie l'adresse de dst.
+** Si dst et src ont la meme adresse, l'adresse de dst est renvoyée.
+*/
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned	char	*buff_dst;
+	unsigned	char	*buffdst;
+	unsigned	char	*buffsrc;
 
-	i = 0;
-	buff_dst = (unsigned char *)dst;
-	while (i < n)
-	{
-		buff_dst[i] = ((const unsigned char *)src)[i];
-		++i;
-	}
+	buffdst = (unsigned char*)dst;
+	buffsrc = (unsigned char*)src;
+	if (dst == src)
+		return (dst);
+	while (n--)
+		*(buffdst++) = *(buffsrc++);
 	return (dst);
 }

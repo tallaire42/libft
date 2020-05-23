@@ -5,33 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:42 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:42 by tallaire         ###   ########.fr       */
+/*   Created: 2019/12/02 17:33:56 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/03 17:34:48 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (nb > 2147483647 || nb < -2147483648)
-		return ;
-	if (nb == -2147483648)
-	{
-		write(fd, &"-2147483648", 11);
-		return ;
-	}
-	if (nb < 0)
+	if (n == (-2147483648))
 	{
 		ft_putchar_fd('-', fd);
-		nb *= (-1);
-	}
-	if (nb < 10)
-	{
-		ft_putchar_fd(nb + '0', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
 		return ;
 	}
-	ft_putnbr_fd(nb / 10, fd);
-	ft_putchar_fd((nb % 10) + '0', fd);
-	return ;
+	if (n < 0)
+	{
+		n *= (-1);
+		ft_putchar_fd('-', fd);
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
 }

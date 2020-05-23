@@ -5,38 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:21 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:22 by tallaire         ###   ########.fr       */
+/*   Created: 2019/12/10 16:43:42 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/18 14:21:28 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	size_t	ft_len(const char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	unsigned	int	i;
+	char			*str;
 
 	i = 0;
-	while (str && str[i])
-		++i;
-	return (i);
-}
-
-char		*ft_strmapi(const char *s, char (*f)(unsigned int, char))
-{
-	char	*new;
-	int	index;
-
-	index = 0;
-	if (s == NULL || f == NULL)
+	if (!f || !s || !(str = malloc(sizeof(char) * (ft_strlen(s) + 1))))
 		return (NULL);
-	if (!(new = malloc(ft_len(s) + 1)))
-		return (NULL);
-	while (s[index])
+	while (*(s + i))
 	{
-		new[index] = f(index, s[index]);
-		++index;
+		str[i] = (*f)(i, *(s + i));
+		i++;
 	}
-	new[index] = '\0';
-	return (new);
+	*(str + i) = '\0';
+	return (str);
 }

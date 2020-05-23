@@ -5,40 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:31 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:34 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/11 18:22:26 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/03 15:46:11 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	int	ft_parse(const char *big, const char *little, size_t len, size_t count)
-{
-	size_t		i;
-
-	i = 0;
-	while (big[i] == little[i] && i + count < len)
-	{
-		if (little[i + 1] == '\0')
-			return (1);
-		++i;
-	}
-	return (0);
-}
-
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
-	if (*little == '\0')
-		return ((char *)big);
-	while (big[i] && i < len)
+	j = 0;
+	if (*needle == '\0')
+		return ((char*)haystack);
+	else
 	{
-		if (big[i] == *little)
-			if (ft_parse((big + i), little, len, i) == 1)
-				return ((char *)(big + i));
-		++i;
+		while (*(haystack + i))
+		{
+			while (*(needle + j) == *(haystack + i + j) && i + j < len)
+			{
+				if (*(needle + j + 1) == '\0')
+					return ((char*)haystack + i);
+				j++;
+			}
+			j = 0;
+			i++;
+		}
 	}
 	return (NULL);
 }

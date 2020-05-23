@@ -5,42 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:59 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:00 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/20 14:00:03 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/04 17:03:55 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	size_t	ft_len(const char *str)
+char	*ft_strdup(const char *s1)
 {
-	size_t	i;
+	int		i;
+	char	*dup;
 
 	i = 0;
-	while (str && str[i])
-		++i;
-	return (i);
-}
-
-char	*ft_strdup(const char *str)
-{
-	size_t	i;
-	char	*new;
-
+	while (*(s1 + i))
+		i++;
+	if (!(dup = (char*)malloc(i + 1)))
+		return (NULL);
 	i = 0;
-	new = NULL;
-	if (str == NULL)
-		return (NULL);
-	if (!(new = malloc(ft_len(str) + 1)))
+	while (*(s1 + i))
 	{
-		errno = ENOMEM;
-		return (NULL);
+		*(dup + i) = *(s1 + i);
+		i++;
 	}
-	while (str && str[i])
-	{
-		new[i] = str[i];
-		++i;
-	}
-	new[i] = '\0';
-	return (new);
+	*(dup + i) = '\0';
+	return (dup);
 }

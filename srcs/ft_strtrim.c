@@ -5,63 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:42 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:43 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/20 17:49:36 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 14:17:34 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	int	is_c_in_str(int c, const char *str)
+/*
+** Vérifie si le charactère [c] passé en paramettre est égale à
+** l'un des charactères de la chaine de charactère [*set].
+**
+** renvoie (1) si :
+** - oui.
+** renvoie (0) si :
+** non.
+*/
+
+size_t		ft_is_set(const char c, const char *set)
 {
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
+	while (*set)
 	{
-		if (c == (int)str[i])
-			return (i);
-		++i;
+		if (c == *set)
+			return (1);
+		set++;
 	}
-	return (-1);
+	return (0);
 }
 
-static	size_t	ft_len(const char *str)
+/*
+** Alloue avec malloc() une copie [*str] de la chaine de charactère [*s1]
+** passée en paramettre en supprimant au début et à la fin de la chaine [*s1]
+** les charactères présents dans la chaine de charactère [*set]
+** passée en paramettre.
+**
+** Renvoie ([str]) si :
+** - l'allocation avec malloc() de [str] n'échoue pas.
+**
+** sinon renvoie (NULL).
+*/
+
+char		*ft_strtrim(const char *s1, const char *set)
 {
+	size_t	len;
 	size_t	i;
+	char	*str;
 
 	i = 0;
-	while (str && str[i])
-		++i;
-	return (i);
-}
-
-char	*ft_strtrim(const char *s1, const char *set)
-{
-	size_t	i;
-	size_t	j;
-	size_t	size;
-	char	*new;
-
-	i = 0;
-	j = 0;
-	size = ft_len(s1);
-	new = NULL;
-	while (set && s1 && is_c_in_str((int)s1[size - 1], set) >= 0 && size > 0)
-		--size;
-	while (set && s1 && is_c_in_str((int)s1[j], set) >= 0 && s1[j])
-		++j;
-	if (j > size)
-		j = 0;
-	if (!(new = malloc((size - j) + 1)))
+	if (!s1 || !set)
 		return (NULL);
-	while (s1 && j < size)
+	while (ft_is_set(*s1, set))
+		s1++;
+	len = ft_strlen(s1);
+	while (len && ft_is_set(*(s1 + (--len)), set))
+		;
+	if (!(str = (char *)malloc(sizeof(char) * (len + 2))))
+		return (NULL);
+	while (i <= len)
 	{
-		new[i] = s1[j];
-		++i;
-		++j;
+		*(str + i) = *(s1 + i);
+		i++;
 	}
-	new[i] = '\0';
-	return (new);
+	*(str + i) = '\0';
+	return (str);
 }
-

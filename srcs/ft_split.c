@@ -5,98 +5,111 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:49 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:50 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/25 15:16:44 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/18 16:41:52 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	size_t	is_a_new_element(const char *str, char sep)
+/*
+** Compte le nombre de de chaines de charactères à spliter
+** à partir de la chaine de caractère [*str] et du caractère [sep].
+**
+** Renvoie le nombre de chaines de caractères à spliter avec {line}.
+*/
+
+static	size_t	ft_nb_line(char const *str, char sep)
 {
-	if (*str == sep && *(str + 1) != sep && *(str + 1) != '\0')
-		return (1);
-	return (0);
+	size_t	line;
+
+	line = 0;
+	while (str && *str && *str == sep)
+		str++;
+	if (str && *str && *str != sep)
+		line++;
+	while (str && *str && *str != sep)
+		str++;
+	if (str && *str && *str == sep)
+		line += ft_nb_line(str, sep);
+	return (line);
 }
 
-static	size_t	nb_element(const char *str, char sep)
+/*
+** Compte le nombre de charactères de la chaine de caractères à spliter
+** à partir de la chaine de caractère [*str].
+**
+** Renvoie le nombre de caractère de la chaine à spliter avec {i}.
+*/
+
+static	size_t	nb_char(char const *str, char sep)
 {
 	size_t	i;
-	size_t	nb_element;
 
 	i = 0;
-	nb_element = 0;
-	if (*str != sep && *str != '\0')
-		nb_element = 1;
-	while (str && str[i])
-	{
-		if (is_a_new_element((str + i), sep) > 0)
-			++nb_element;
-		++i;
-	}
-	return (nb_element);
+	while (str && *(str + i) && *(str + i) != sep)
+		i++;
+	return (i);
 }
 
-static	char	**free_new(char **split, size_t size)
-{
-	size_t	i;
+/*
+** désalloue avec free() la mémoire alloué avec malloc() de la chaine de chaine
+** de caractères de [**split] ainsi que les sous-chaines de caractères [*split].
+**
+** Renvoie (NULL).
+*/
 
-	i = 0;
-	while (i < size)
+static	char	**ft_free_split(char **split, size_t i)
+{
+	while (i > 0)
 	{
-		free(split[i]);
-		split[i] = NULL;
-		++i;
+		free(*(split + i));
+		*(split + i) = NULL;
+		i--;
 	}
 	free(split);
 	split = NULL;
-	return (split);
+	return (NULL);
 }
 
-static	char	*new_array(const char *str, char sep, size_t *i)
-{
-	size_t	size;
-	size_t	j;
-	char	*new;
+/*
+** Alloue avec malloc() une chaine de chaine de charactères [**split] obtenue
+** en séparant la chaine de charactère [*s] passé en paramettre
+** avec le caractère [c] passé en paramettre.
+** [**split] ne contient pas de chaines vides.
+**
+** Renvoie [**split] si :
+** - Aucun malloc() n'échoue.
+** Sinon :
+** Renvoie [NULL] et désalloue avec free() [**split]
+** ainsi les chaines de caractères qui lui sont attachées.
+*/
 
-	size = 0;
-	j = 0;
-	while (str && str[*i + size] && str[*i + size] != sep)
-		++size;
-	if (!(new = malloc(size + 1)))
+char			**ft_split(char const *s, char c)
+{
+	int		i;
+	size_t	j;
+	size_t	nb_line;
+	char	**split;
+
+	i = -1;
+	nb_line = ft_nb_line(s, c);
+	if (!s || !(split = (char **)malloc(sizeof(char *) * (nb_line + 1))))
 		return (NULL);
-	while (str && str[*i] && str[*i] != sep)
+	while (++i < (int)nb_line)
 	{
-		new[j] = str[*i];
-		++j;
-		++*i;
-	}
-	new[j] = '\0';
-	return (new);
-}
-
-char		**ft_split(const char *s, char c)
-{
-	size_t	i;
-	size_t	j;
-	size_t	size_new;
-	char	**new;
-
-	i = 0;
-	j = 0;
-	size_new = nb_element(s, c);
-	if (!(new = (char **)malloc(sizeof(char *) * (size_new + 1))))
-		return (free_new(new, j));
-	while (s && s[i] && j < size_new)
-	{
-		if (s[i] && s[i] != c)
+		while (*s == c)
+			s++;
+		if (!(split[i] = (char *)malloc(sizeof(char) * ((nb_char(s, c) + 1)))))
+			return (ft_free_split(split, i));
+		j = 0;
+		while (*s && *s != c)
 		{
-			if (!(new[j] = new_array(s, c, &i)))
-				return (free_new(new, j));
-			++j;
+			*((*(split + i)) + j++) = *s;
+			s++;
 		}
-		++i;
+		*((*(split + i)) + j) = '\0';
 	}
-	new[j] = NULL;
-	return (new);
+	*(split + i) = NULL;
+	return (split);
 }

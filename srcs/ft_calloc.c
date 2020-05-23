@@ -5,29 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:26:28 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:26:29 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/20 11:40:12 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 12:37:30 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-void	*ft_calloc(size_t nb_elmt, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t	i;
-	char	*str;
+	void	*str;
 
-	i = 0;
-	str = NULL;
-	if (nb_elmt == 0 || size == 0)
-		return (str);
-	if (!(str = malloc((nb_elmt + 1) * size)))
-		return (NULL);
-	while (i < nb_elmt)
+	if (count == 0 || size == 0)
 	{
-		str[i] = '\0';
-		++i;
+		count = 1;
+		size = 1;
 	}
+	if (!(str = malloc(count * size)))
+		return (NULL);
+	ft_bzero(str, count * size);
 	return (str);
 }
-

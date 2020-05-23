@@ -5,27 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:38 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:38 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/07 13:27:01 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/04 15:44:46 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	unsigned	char	l;
-	char			*str;
+	int		i;
+	char	*tmp;
 
-	l = (unsigned char)c;
-	str = (char *)s;
-	while (*str)
-		++str;
-	while ((unsigned char)(*str) != l)
+	i = 0;
+	tmp = NULL;
+	while (*(s + i))
 	{
-		if (s == (const char *)str)
-			return (NULL);
-		--str;
+		if (*(s + i) == c)
+			tmp = ((char *)s + i);
+		i++;
 	}
-	return (str);
+	if (*(s + i) == c)
+		tmp = ((char *)s + i);
+	return (tmp);
 }

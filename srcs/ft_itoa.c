@@ -5,14 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/19 12:05:06 by tallaire          #+#    #+#             */
-/*   Updated: 2020/03/12 16:18:49 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/29 12:01:21 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/11 12:38:26 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-size_t	static	ft_len(int n)
+/*
+** Calcule la longueur necessaire de la chaine de caracteres renvoyée par
+** la fonction *ft_itoa().
+**
+** renvoie le nombre de caractere sans compter le '\0'.
+*/
+
+static	int		ft_len(int n)
 {
 	size_t	len;
 
@@ -53,4 +60,3 @@ char			*ft_itoa(int n)
 		*(str + len) = '-';
 	return (str);
 }
-

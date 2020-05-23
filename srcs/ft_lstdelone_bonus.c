@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 08:47:34 by tallaire          #+#    #+#             */
-/*   Updated: 2019/12/03 15:19:57 by tallaire         ###   ########.fr       */
+/*   Created: 2019/12/21 12:18:38 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/22 14:00:25 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	size_t	i;
-
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
+	if (!lst || !(*del))
+		return ;
+	(*del)(lst->content);
+	free(lst);
 }

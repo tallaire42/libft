@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 08:47:34 by tallaire          #+#    #+#             */
-/*   Updated: 2019/12/03 15:19:57 by tallaire         ###   ########.fr       */
+/*   Created: 2019/12/20 14:42:54 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/22 14:33:11 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+t_list		*ft_lstnew(void *content)
 {
-	size_t	i;
+	t_list			*new;
 
-	i = 0;
-	while (*(str + i))
-		i++;
-	return (i);
+	if (!(new = (t_list *)malloc(sizeof(t_list))))
+		return (0);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

@@ -5,20 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:02 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:03 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/06 14:20:13 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/03 15:23:32 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {
-	unsigned	char	l;
-
-	l = (unsigned char)c;
-	if (l >= '0' && l <= '9')
-		return (c);
+	if (c >= '0' && c <= '9')
+		return (1);
 	else
 		return (0);
 }

@@ -5,21 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:46 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:46 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/29 17:47:15 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 14:29:39 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-void	ft_putstr_fd(const char *str, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	len;
+	int		i;
 
-	len = 0;
-	if (str == NULL)
-		return ;
-	while (str && str[len])
-		++len;
-	write(fd, str, len);
+	i = 0;
+	if (s)
+	{
+		while (*(s + i))
+		{
+			ft_putchar_fd(*(s + i), fd);
+			i++;
+		}
+	}
 }

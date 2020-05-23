@@ -5,20 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:27:06 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:27:07 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/06 15:37:01 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/03 15:30:12 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
 int	ft_isprint(int c)
 {
-	unsigned	char	l;
-
-	l = (unsigned char)c;
-	if (l >= 32 && l <= 126)
-		return (l);
+	if (c >= 32 && c <= 126)
+		return (1);
 	else
 		return (0);
 }

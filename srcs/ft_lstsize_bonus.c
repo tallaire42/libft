@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 08:47:34 by tallaire          #+#    #+#             */
-/*   Updated: 2019/12/03 15:19:57 by tallaire         ###   ########.fr       */
+/*   Created: 2019/12/20 16:35:05 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/22 15:07:25 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *str)
+int		ft_lstsize(t_list *lst)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (*(str + i))
+	while (lst)
+	{
 		i++;
+		lst = lst->next;
+	}
 	return (i);
 }

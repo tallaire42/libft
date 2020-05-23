@@ -5,37 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/02 11:28:10 by tallaire          #+#    #+#             */
-/*   Updated: 2020/05/02 11:28:11 by tallaire         ###   ########.fr       */
+/*   Created: 2019/11/08 14:44:52 by tallaire          #+#    #+#             */
+/*   Updated: 2019/12/09 14:27:22 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../header/libft.h"
+#include "libft.h"
 
-static	size_t		ft_len(const char *str)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t		i;
+	size_t	i;
 
 	i = 0;
-	while (str[i])
-		++i;
-	return (i);
-}
-
-size_t		ft_strlcpy(char *dst, const char *src, size_t size)
-{
-	size_t		i;
-
-	i = 0;
-	if (dst == NULL)
+	if (!dst || !src)
 		return (0);
-	if (size == 0)
-		return (ft_len(src));
-	while (i < size - 1 && src[i])
+	while (*(src + i) && dstsize > 1)
 	{
-		dst[i] = src[i];
-		++i;
+		*(dst + i) = *(src + i);
+		dstsize--;
+		i++;
 	}
-	dst[i] = '\0';
-	return (ft_len(src));
+	if (dstsize > 0)
+		*(dst + i) = '\0';
+	while (*(src + i))
+		i++;
+	return (i);
 }
