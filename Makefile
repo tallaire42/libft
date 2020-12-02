@@ -20,6 +20,14 @@ CFLAGS = -Werror -Wextra -Wall -c
 
 HEADER = ./includes/libft.h
 
+##########################################
+############## COLORS ####################
+##########################################
+
+C_GREEN		=	\033[0;32m
+C_RED		=	\033[0;31m
+C_END		=	\033[0m
+
 SRC_NAME =		c_is_str.c\
 		ft_atoi.c\
 		ft_bzero.c\
@@ -61,22 +69,11 @@ SRC_NAME =		c_is_str.c\
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)
 
-SRCBONUS =	$(SRC)\
-			ft_lstnew_bonus.c\
-			ft_lstadd_front_bonus.c\
-			ft_lstsize_bonus.c\
-			ft_lstlast_bonus.c\
-			ft_lstadd_back_bonus.c\
-			ft_lstdelone_bonus.c\
-			ft_lstclear_bonus.c\
-			ft_lstiter_bonus.c
-
 OBJ_PATH	= ./.obj
 
 SRC_PATH	= ./srcs
 
 OBJBONUS =	$(SRC:.c=.o)\
-			$(SRCBONUS:.c=.o)
 
 OBJ		= $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 SRC		= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
@@ -84,35 +81,34 @@ SRC		= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 all: $(OBJ_PATH) $(NAME)
 
 $(OBJ_PATH):
-	@echo Creating object directory
 	@mkdir -p $(OBJ_PATH)
 
 $(NAME): $(OBJ) $(HEADER)
-	@echo Compiling $(NAME)..
 	@ar rc $(NAME) $(OBJ)
-	@echo ranlib $(NAME)..
 	@ranlib $(NAME)
+	@echo ""
+	@echo ""
+	@echo "$(NAME) [$(C_GREEN)OK$(C_END)]"
+	@echo ""
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@echo Compiling $< in $@..
 	@$(CC) -o $@ $(CFLAGS) $<
-
-bonus: $(BONUS) $(HEADER)
-	@$(CC) $(CFLAGS) $(SRCBONUS)
-	@ar rc $(NAME) $(OBJBONUS)
-	@ranlib $(NAME)
+	@echo "$<		[$(C_GREEN)OK$(C_END)]"
 
 clean:
-	@echo Delete $(OBJ)
 	@$(RM) $(OBJ) $(OBJ_PATH) $(OBJBONUS)
+	@echo ""
+	@echo ""
+	@echo "$(C_RED)REMOVE OBJECT FILES$(C_END) [$(C_GREEN)OK$(C_END)]"
+	@echo ""
 
 fclean: clean
-	@echo delete $(NAME)
+	@echo ""
 	@$(RM) $(NAME)
+	@echo "$(C_RED)REMOVE $(NAME)$(C_END) [$(C_GREEN)OK$(C_END)]"
+	@echo ""
+	@echo ""
 
 re: fclean all
-
-print-%:
-	@echo $*=$($*)
 
 .PHONY: all bonus clean fclean re
