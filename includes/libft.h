@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include "ft_printf.h"
 
 # define BUFFER_SIZE 1024
 

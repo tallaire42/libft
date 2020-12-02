@@ -20,52 +20,82 @@ CFLAGS = -Werror -Wextra -Wall -c
 
 HEADER = ./includes/libft.h
 
-##########################################
-############## COLORS ####################
-##########################################
+################################
+############ COLORS ############
+################################
 
 C_GREEN		=	\033[0;32m
 C_RED		=	\033[0;31m
 C_END		=	\033[0m
 
-SRC_NAME =		c_is_str.c\
-		ft_atoi.c\
-		ft_bzero.c\
-		ft_calloc.c\
-		ft_isalnum.c\
-		ft_isalpha.c\
-		ft_isascii.c\
-		ft_isdigit.c\
-		ft_isprint.c\
-		ft_itoa.c\
-		ft_memccpy.c\
-		ft_memchr.c\
-		ft_memcmp.c\
-		ft_memcpy.c\
-		ft_memmove.c\
-		ft_memset.c\
-		ft_putchar_fd.c\
-		ft_putendl_fd.c\
-		ft_putnbr_fd.c\
-		ft_putstr_fd.c\
-		ft_split.c\
-		ft_strchr.c\
-		ft_strcpy.c\
-		ft_strdup.c\
-		ft_strjoin.c\
-		ft_strlcat.c\
-		ft_strlcpy.c\
-		ft_strlen.c\
-		ft_strmapi.c\
-		ft_strncmp.c\
-		ft_strnstr.c\
-		ft_strrchr.c\
-		ft_strtrim.c\
-		ft_substr.c\
-		ft_tolower.c\
-		ft_toupper.c\
-		get_next_line.c\
-		get_next_line_utils.c
+################################
+############# LIBFT ############
+################################
+
+SRC_NAME	+=	c_is_str.c
+SRC_NAME	+=	ft_atoi.c
+SRC_NAME	+=	ft_bzero.c
+SRC_NAME	+=	ft_calloc.c
+SRC_NAME	+=	ft_isalnum.c
+SRC_NAME	+=	ft_isalpha.c
+SRC_NAME	+=	ft_isascii.c
+SRC_NAME	+=	ft_isdigit.c
+SRC_NAME	+=	ft_isprint.c
+SRC_NAME	+=	ft_itoa.c
+SRC_NAME	+=	ft_memccpy.c
+SRC_NAME	+=	ft_memchr.c
+SRC_NAME	+=	ft_memcmp.c
+SRC_NAME	+=	ft_memcpy.c
+SRC_NAME	+=	ft_memmove.c
+SRC_NAME	+=	ft_memset.c
+SRC_NAME	+=	ft_putchar_fd.c
+SRC_NAME	+=	ft_putendl_fd.c
+SRC_NAME	+=	ft_putnbr_fd.c
+SRC_NAME	+=	ft_putstr_fd.c
+SRC_NAME	+=	ft_split.c
+SRC_NAME	+=	ft_strchr.c
+SRC_NAME	+=	ft_strcpy.c
+SRC_NAME	+=	ft_strdup.c
+SRC_NAME	+=	ft_strjoin.c
+SRC_NAME	+=	ft_strlcat.c
+SRC_NAME	+=	ft_strlcpy.c
+SRC_NAME	+=	ft_strlen.c
+SRC_NAME	+=	ft_strmapi.c
+SRC_NAME	+=	ft_strncmp.c
+SRC_NAME	+=	ft_strnstr.c
+SRC_NAME	+=	ft_strrchr.c
+SRC_NAME	+=	ft_strtrim.c
+SRC_NAME	+=	ft_substr.c
+SRC_NAME	+=	ft_tolower.c
+SRC_NAME	+=	ft_toupper.c
+
+#################################
+############## GNL ##############
+#################################
+
+SRC_NAME	+=	get_next_line.c
+SRC_NAME	+=	get_next_line_utils.c
+
+#################################
+########### FT_PRINTF ###########
+#################################
+
+SRC_NAME	+=	ft_printf.c
+SRC_NAME	+=	ft_printf_utils.c
+SRC_NAME	+=	ft_printf_utils_2.c
+SRC_NAME	+=	ft_printf_check_convert.c
+SRC_NAME	+=	ft_printf_get_convert.c
+SRC_NAME	+=	ft_printf_do_width_string.c
+SRC_NAME	+=	ft_printf_do_width_int.c
+SRC_NAME	+=	ft_printf_do_width_ptr.c
+SRC_NAME	+=	ft_printf_do_width_int_base.c
+SRC_NAME	+=	ft_printf_char.c
+SRC_NAME	+=	ft_printf_int.c
+SRC_NAME	+=	ft_printf_int_base.c
+SRC_NAME	+=	ft_printf_string.c
+SRC_NAME	+=	ft_printf_ptr.c
+SRC_NAME	+=	ft_printf_modulo.c
+
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)
 
@@ -92,8 +122,8 @@ $(NAME): $(OBJ) $(HEADER)
 	@echo ""
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@$(CC) -o $@ $(CFLAGS) $<
 	@echo "$<		[$(C_GREEN)OK$(C_END)]"
+	@$(CC) -o $@ $(CFLAGS) $<
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_PATH) $(OBJBONUS)
