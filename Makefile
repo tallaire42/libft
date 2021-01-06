@@ -12,7 +12,7 @@
 
 NAME = libft.a
 
-CC = gcc
+CC = clang
 
 RM = rm -rf
 
@@ -95,6 +95,13 @@ SRC_NAME	+=	ft_printf_int_base.c
 SRC_NAME	+=	ft_printf_string.c
 SRC_NAME	+=	ft_printf_ptr.c
 SRC_NAME	+=	ft_printf_modulo.c
+
+#################################
+######### MY FUNCTIONS ##########
+#################################
+
+SRC_NAME	+=	free_get_file.c
+SRC_NAME	+=	get_file.c
 
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)

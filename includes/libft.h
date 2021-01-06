@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "ft_printf.h"
 
 # define BUFFER_SIZE 1024
@@ -87,6 +88,8 @@ int		ft_error(char **s1, char **s2);
 */
 
 int				c_is_str(char *str, int c);
+void			free_get_file(char **txt);
 void			print_binary(long long int value, int nb_octet);
+char			**get_file(char *path);
 
 #endif

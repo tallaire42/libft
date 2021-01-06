@@ -119,6 +119,7 @@ int			ft_printf(const char *str, ...)
 
 	ret = 0;
 	count.return_value = 0;
+	count.flag = 0;
 	va_start(ap, str);
 	if ((ret = ft_parsing(&count, &ap, str)) < 0)
 		return (-1);
