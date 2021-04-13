@@ -32,7 +32,6 @@ C_END		=	\033[0m
 ############# LIBFT ############
 ################################
 
-SRC_NAME	+=	c_is_str.c
 SRC_NAME	+=	ft_atoi.c
 SRC_NAME	+=	ft_bzero.c
 SRC_NAME	+=	ft_calloc.c
@@ -100,8 +99,7 @@ SRC_NAME	+=	ft_printf_modulo.c
 ######### MY FUNCTIONS ##########
 #################################
 
-SRC_NAME	+=	free_get_file.c
-SRC_NAME	+=	get_file.c
+SRC_NAME	+=	c_is_str.c
 
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)

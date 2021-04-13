@@ -21,12 +21,6 @@
 
 # define BUFFER_SIZE 1024
 
-typedef	struct	s_list
-{
-	void			*content;
-	struct s_list	*next;
-}				t_list;
-
 /*
 ** ##############################
 ** ########### LIBFT ############
@@ -88,8 +82,6 @@ int		ft_error(char **s1, char **s2);
 */
 
 int				c_is_str(char *str, int c);
-void			free_get_file(char **txt);
 void			print_binary(long long int value, int nb_octet);
-char			**get_file(char *path);
 
 #endif
