@@ -39,7 +39,7 @@ t_printf *count, char const *str, size_t *i)
 
 	j = 0;
 	ft_bzero(count->convert, 128);
-	while (str && str[*i] && (c_is_str(INDEX_FLAG, str[*i])) < 0)
+	while (str && str[*i] && (where_is_c(str[*i], INDEX_FLAG)) < 0)
 	{
 		if (j >= 127)
 		{
@@ -73,7 +73,7 @@ static	int	ft_conversion(va_list *ap, t_printf *count, char c)
 	(ft_flag[6]) = &ft_string;
 	(ft_flag[7]) = &ft_ptr;
 	count->flag = c;
-	if ((ret = c_is_str(INDEX_FLAG, c)) < 0)
+	if ((ret = where_is_c(c, INDEX_FLAG)) < 0)
 		return (-1);
 	if (ret == 8)
 	{

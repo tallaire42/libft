@@ -30,7 +30,7 @@ static	int	ft_check_convert_attribut(t_printf *count, char *str)
 			count->is_plus = 1;
 		if (str[i] == ' ')
 			count->is_space = 1;
-		if (c_is_str("#0-+ ", str[i]) < 0)
+		if (where_is_c(str[i], "#0-+ ") < 0)
 			return (-1);
 		++i;
 	}

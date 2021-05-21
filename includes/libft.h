@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # include "ft_printf.h"
 
+# define NO		(-1)
+# define YES		0
 # define BUFFER_SIZE 1024
 
 /*
@@ -33,12 +35,12 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_atoi(const char *str);
-int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
+int				ft_strcmp(char *s1, char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
@@ -50,6 +52,7 @@ char			*ft_strchr(const char *s, int c);
 char			*ft_strcpy(char *dst, char const *src);
 char			*ft_strdup(const char *s1);
 char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_strldup(char *str, size_t size);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(const char *haystack, const char *needle,
 size_t len);
@@ -81,7 +84,10 @@ int		ft_error(char **s1, char **s2);
 ** #####################################
 */
 
-int				c_is_str(char *str, int c);
+int				c_is_alnum(int c);
+int				c_is_str(int c, char *str);
+int				where_is_c(int c, char *str);
 void			print_binary(long long int value, int nb_octet);
+char			**ft_split_slash(char *str, char *sep);
 
 #endif

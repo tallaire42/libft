@@ -35,7 +35,6 @@ C_END		=	\033[0m
 SRC_NAME	+=	ft_atoi.c
 SRC_NAME	+=	ft_bzero.c
 SRC_NAME	+=	ft_calloc.c
-SRC_NAME	+=	ft_isalnum.c
 SRC_NAME	+=	ft_isalpha.c
 SRC_NAME	+=	ft_isascii.c
 SRC_NAME	+=	ft_isdigit.c
@@ -53,11 +52,13 @@ SRC_NAME	+=	ft_putnbr_fd.c
 SRC_NAME	+=	ft_putstr_fd.c
 SRC_NAME	+=	ft_split.c
 SRC_NAME	+=	ft_strchr.c
+SRC_NAME	+=	ft_strcmp.c
 SRC_NAME	+=	ft_strcpy.c
 SRC_NAME	+=	ft_strdup.c
 SRC_NAME	+=	ft_strjoin.c
 SRC_NAME	+=	ft_strlcat.c
 SRC_NAME	+=	ft_strlcpy.c
+SRC_NAME	+=	ft_strldup.c
 SRC_NAME	+=	ft_strlen.c
 SRC_NAME	+=	ft_strmapi.c
 SRC_NAME	+=	ft_strncmp.c
@@ -99,7 +100,10 @@ SRC_NAME	+=	ft_printf_modulo.c
 ######### MY FUNCTIONS ##########
 #################################
 
+SRC_NAME	+=	c_is_alnum.c
 SRC_NAME	+=	c_is_str.c
+SRC_NAME	+=	where_is_c.c
+SRC_NAME	+=	ft_split_slash.c
 
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)

@@ -32,7 +32,7 @@ void			ft_strcat_c(t_printf *count, char const c)
 	int		i;
 
 	i = 0;
-	if (c_is_str("c", count->flag) >= 0 && c == '\0')
+	if (where_is_c(count->flag, "c") >= 0 && c == '\0')
 	{
 		write(1, count->buffer, ft_strlen(count->buffer));
 		ft_bzero(count->buffer, ft_strlen(count->buffer));
