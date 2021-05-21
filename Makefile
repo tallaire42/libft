@@ -112,8 +112,6 @@ OBJ_PATH	= ./.obj
 
 SRC_PATH	= ./srcs
 
-OBJBONUS =	$(SRC:.c=.o)\
-
 OBJ		= $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 SRC		= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 
@@ -135,7 +133,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@$(CC) -o $@ $(CFLAGS) $<
 
 clean:
-	@$(RM) $(OBJ) $(OBJ_PATH) $(OBJBONUS)
+	@$(RM) $(OBJ) $(OBJ_PATH)
 	@echo ""
 	@echo ""
 	@echo "$(C_RED)REMOVE OBJECT FILES$(C_END) [$(C_GREEN)OK$(C_END)]"
