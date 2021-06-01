@@ -6,12 +6,12 @@
 /*   By: tallaire <tallaire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 15:06:03 by tallaire          #+#    #+#             */
-/*   Updated: 2019/12/23 11:11:05 by tallaire         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:12:42 by tallaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_LIBFT_H
-# define DEF_LIBFT_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -19,9 +19,13 @@
 # include <fcntl.h>
 # include "ft_printf.h"
 
-# define NO		(-1)
-# define YES		0
-# define BUFFER_SIZE 1024
+# define BUFFER_SIZE	1024
+
+enum		e_bool
+{
+	YES	= 0,
+	NO	= (-1)
+};
 
 /*
 ** ##############################
@@ -55,11 +59,11 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strldup(char *str, size_t size);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strnstr(const char *haystack, const char *needle,
-size_t len);
+					size_t len);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(const char *s1, const char *set);
-char			**ft_split(char *str, char *sep);
+char			**ft_split(char const *str, char c);
 void			*ft_calloc(size_t count, size_t size);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void			*ft_memchr(const void *s, int c, size_t n);
@@ -73,10 +77,10 @@ void			*ft_memset(void *s, int c, size_t n);
 ** #####################################
 */
 
-int		get_next_line(int fd, char **line);
-int		ft_strlen_gnl(char *str);
-int		is_to_c(char *str, int c);
-int		ft_error(char **s1, char **s2);
+int				get_next_line(int fd, char **line);
+int				ft_strlen_gnl(char *str);
+int				is_to_c(char *str, int c);
+int				ft_error(char **s1, char **s2);
 
 /*
 ** #####################################
@@ -87,6 +91,7 @@ int		ft_error(char **s1, char **s2);
 int				c_is_alnum(int c);
 int				c_is_str(int c, char *str);
 int				where_is_c(int c, char *str);
+void			free_get_file(char **txt);
 void			print_binary(long long int value, int nb_octet);
 char			**ft_split_slash(char *str, char *sep);
 
